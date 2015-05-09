@@ -1,7 +1,7 @@
 <head>
   <title>StudyFlix</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
     <script src="https://apis.google.com/js/platform.js"></script>
@@ -23,7 +23,7 @@
             <input type="submit" value="Submit">
         </form>
         <br>
-        <div><h2>Invite a friend to watch with you: </h2><g:hangout render="createhangout"></g:hangout></div>
+        <div><h2>Invite a friend to learn with you: </h2><g:hangout render="createhangout"></g:hangout></div>
     </div>
   </div>
 
@@ -37,14 +37,12 @@
 <template name="home">
     <div class="container">
         <h1>Welcome to StudyFlix!</h1>
+        <ul>
+            <li>StudyFlix was designed to help people learn new skills.</li>
+            <li>It enables real time and asynchronous questions/answers around YouTube videos.</li>
+            <li>To get started, enter a video ID on the left.</li>
+        </ul>
         <img src="https://files.slack.com/files-pri/T04PQ109S-F04QECKH3/home_connect.png" width="700">
-
-
-        <h4>StudyFlix was designed to help people learn new skills.</h4>
-
-        <h4>It enables real time and asynchronous questions/answers around YouTube videos.</h4>
-
-        <h4>To get started, enter a video ID on the left.</h4>
     </div>
 </template>
 
@@ -52,19 +50,20 @@
     <div class="container">
         <div id="player"></div>
 
-        <div id="fbase">
+        <div id="fbase" class="comments">
 
             <h1>
             <span>Have questions? Get answers below:</span>
             </h1>
             <label>
-                <span>Your Name :</span>
+                <span><b>Your Name:</b></span>
                 <input id="nameInput" type="text" name="name" placeholder="Your Full Name" />
             </label>
             <label>
-                <span>Message :</span>
+                <span><b>Message:</b></span>
                 <textarea id="messageInput" name="message" placeholder="Question or Answer"></textarea>
             </label>
+            <div>--------------------------------------------------------------------------------------------------------------------------</div>
             <div id='messagesDiv'></div>
 
 
