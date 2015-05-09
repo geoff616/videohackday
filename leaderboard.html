@@ -2,6 +2,10 @@
   <title>Leaderboard</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+
 </head>
 
 <body>
@@ -12,7 +16,7 @@
       <h1 class="title">Pick a video</h1>
       <div class="subtitle">Enter a YouTube video ID</div>
         <form action="video">
-            YouTube ID: <input type="text" name="video_id" value="12345"><br>
+            YouTube ID: <input type="text" name="video_id" value="YouTube ID"><br>
          <input type="submit" value="Submit Video ID">
         </form>
     </div>
@@ -32,6 +36,27 @@
 <template name="video">
     <div class="container">
         <div id="player"></div>
+        <div id="fbase">
+            <div id='messagesDiv'></div>
+            <input type='text' id='nameInput' placeholder='Name'>
+            <input type='text' id='messageInput' placeholder='Message'>
+            <script>
+                $('#messageInput').keypress(function (e) {
+                    if (e.keyCode == 13) {
+                        var name = $('#nameInput').val();
+                        var text = $('#messageInput').val();
+                        window.myDataRef.push({name: name, text: text});
+                        $('#messageInput').val('');
+                    }
+                });
+            </script>
+
+
+
+
+        </div>
+
+
 
     </div>
 </template>

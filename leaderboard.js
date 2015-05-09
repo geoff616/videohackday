@@ -18,7 +18,20 @@ Router.route('/', function () {
 Router.map(function() {
   this.route('video', {
     path: '/video',
-    data: function () { callTheYouTube()
+    data: function () {
+      //get the player on the page with the right ID
+      callTheYouTube(this.params.query.video_id)
+
+      //trying to set up the real time chat
+      window.myDataRef = new Firebase('https://torrid-fire-9103.firebaseio-demo.com/');
+      window.myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.name, message.text);
+      });
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
 
 
     }
@@ -38,7 +51,7 @@ Router.map(function(){
 });
 
 if (Meteor.isClient) {
-  function callTheYouTube(){
+  function callTheYouTube(videoID){
     // YouTube API will call onYouTubeIframeAPIReady() when API ready.
     // Make sure it's a global variable.
     onYouTubeIframeAPIReady = function () {
@@ -50,8 +63,8 @@ if (Meteor.isClient) {
         height: "400",
         width: "600",
 
-        // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-        videoId: "LdH1hSWGFGU",
+
+        videoId: videoID,
 
         // Events like ready, state change,
         events: {
