@@ -1,50 +1,43 @@
 // Set up a collection to contain player information. On the server,
-// it is backed by a MongoDB collection named "players".
+// it is backed by a MongoDB collection named "videos".
 
-Players = new Mongo.Collection("players");
+Players = new Mongo.Collection("videos");
+
+//Make the routes
+
+// simple route with
+// name 'home' that
+// matches '/' and automatically renders
+// template 'home'
+Router.route('/', function () {
+  this.render('home');
+});
+// complex route with
+// name 'postDetail' that for example
+// matches '/posts/1' or '/posts/hello-world' and automatically renders
+// template 'postDetail'
+Router.route('/video/:_id', function () {
+  this.render('video');
+});
+
+//Testing adding data to route
+
+Router.map(function(){
+  this.route('test', {
+    path: '/test',
+    data: {
+      someValue: "Hello, I'm a value.",
+      anotherValue: "Hello, I'm another value."
+    }
+  });
+});
 
 if (Meteor.isClient) {
-  Template.leaderboard.helpers({
-    players: function () {
-      return Players.find({}, { sort: { score: -1, name: 1 } });
-    },
-    selectedName: function () {
-      var player = Players.findOne(Session.get("selectedPlayer"));
-      return player && player.name;
-    }
-  });
 
-  Template.leaderboard.events({
-    'click .inc': function () {
-      Players.update(Session.get("selectedPlayer"), {$inc: {score: 5}});
-    }
-  });
-
-  Template.player.helpers({
-    selected: function () {
-      return Session.equals("selectedPlayer", this._id) ? "selected" : '';
-    }
-  });
-
-  Template.player.events({
-    'click': function () {
-      Session.set("selectedPlayer", this._id);
-    }
-  });
 }
 
-// On server startup, create some players if the database is empty.
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    if (Players.find().count() === 0) {
-      var names = ["Ada Lovelace", "Grace Hopper", "Marie Curie",
-                   "Carl Friedrich Gauss", "Nikola Tesla", "Claude Shannon"];
-      _.each(names, function (name) {
-        Players.insert({
-          name: name,
-          score: Math.floor(Random.fraction() * 10) * 5
-        });
-      });
-    }
-  });
+
+
+
 }

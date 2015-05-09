@@ -5,35 +5,37 @@
 </head>
 
 <body>
-  <div class="outer">
-    <div class="logo"></div>
-    <h1 class="title">Leaderboard</h1>
-    <div class="subtitle">Select a scientist to give them points</div>
-    {{> leaderboard}}
+
+  <div id="sidebar" class="interface">
+    <div class="outer">
+      <div class="logo"></div>
+      <h1 class="title">Pick a video</h1>
+      <div class="subtitle">Enter a YouTube video ID</div>
+        <form action="video">
+            YouTube ID: <input type="text" name="video_id" value="12345"><br>
+         <input type="submit" value="Submit Video ID">
+        </form>
+    </div>
   </div>
+
+
+
+
+
+
 </body>
 
-<template name="leaderboard">
-  <ol class="leaderboard">
-    {{#each players}}
-      {{> player}}
-    {{/each}}
-  </ol>
+<template name="video">
+    <div class="container">this is a video </div>
+</template>
 
-  {{#if selectedName}}
-    <div class="details">
-      <div class="name">{{selectedName}}</div>
-      <button class="inc">Add 5 points</button>
+<template name="home">
+    <div class="container"><h2>all of the lights</h2> </div>
+</template>
+
+<template name="test">
+    <div class="container">git s
+  {{someValue}}
+  {{anotherValue}}
     </div>
-  {{else}}
-    <div class="message">Click a player to select</div>
-  {{/if}}
 </template>
-
-<template name="player">
-  <li class="player {{selected}}">
-    <span class="name">{{name}}</span>
-    <span class="score">{{score}}</span>
-  </li>
-</template>
-
