@@ -3,6 +3,8 @@
 
 Players = new Mongo.Collection("videos");
 
+
+
 //Make the routes
 
 // simple route with
@@ -23,7 +25,7 @@ Router.map(function() {
       callTheYouTube(this.params.query.video_id)
 
       //trying to set up the real time chat
-      window.myDataRef = new Firebase('https://torrid-fire-9103.firebaseio-demo.com/');
+      window.myDataRef = new Firebase('https://torrid-fire-9103.firebaseio-demo.com/' + this.params.query.video_id);
       window.myDataRef.on('child_added', function(snapshot) {
         var message = snapshot.val();
         displayChatMessage(message.name, message.text);
@@ -33,19 +35,14 @@ Router.map(function() {
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
 
+      //testing ziggeo submits
 
-    }
-  });
-});
+      window.submittedVideos = new Firebase('https://torrid-fire-9103.firebaseio-demo.com/' + this.params.query.video_id) + '/submittedvideos';
+      ZiggeoApi.Events.on("submitted", function (data) {
+        window.submittedVideos.push({id: data.video.token});
+      });
 
-//Testing adding data to route
 
-Router.map(function(){
-  this.route('test', {
-    path: '/test',
-    data: {
-      someValue: "Hello, I'm a value.",
-      anotherValue: "Hello, I'm another value."
     }
   });
 });

@@ -5,6 +5,10 @@
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 
+    <link rel="stylesheet" href="//assets.ziggeo.com/css/ziggeo-betajs-player.min.css" />
+    <script src="//assets.ziggeo.com/js/ziggeo-json2-betajs-player.min.js"></script>
+    <script>ZiggeoApi.token = "20c174623f7763b5a50f5b87afe18c6a";</script>
+
 
 </head>
 
@@ -51,19 +55,24 @@
                 });
             </script>
 
-
-
+        </div>
+        <div id="ziggy">
+            <ziggeo ziggeo-width=320
+                    ziggeo-height=240>
+            </ziggeo>
+            <ziggeo ziggeo-video="_sample_video"
+                    ziggeo-width=320
+                    ziggeo-height=240>
+            </ziggeo>
 
         </div>
 
 
-
     </div>
 </template>
 
-<template name="test">
-    <div class="container">
-      {{someValue}}
-      {{anotherValue}}
-    </div>
+<template name="submitedVideos">
+
 </template>
+
+
