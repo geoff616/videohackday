@@ -55,7 +55,7 @@ if (Meteor.isClient) {
         player = new YT.Player("player", {
 
           height: "400",
-          width: "600",
+          width: "800",
 
 
           videoId: videoID,

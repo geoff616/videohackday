@@ -1,5 +1,5 @@
 <head>
-  <title>Leaderboard</title>
+  <title>StudyFlix</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
@@ -15,11 +15,11 @@
   <div id="sidebar" class="interface">
     <div class="outer">
       <div class="logo"></div>
-      <h1 class="title">Pick a video</h1>
-      <div class="subtitle">Enter a YouTube video ID</div>
+      <h1 class="title">Start learning:</h1>
         <form action="video">
-            YouTube ID: <input type="text" name="video_id" value="YouTube ID"><br>
-         <input type="submit" value="Submit Video ID">
+            YouTube Video ID:
+            <input type="text" name="video_id" value="Video ID"><br>
+         <input type="submit" value="Video ID">
         </form>
     </div>
   </div>
@@ -32,7 +32,14 @@
 </body>
 
 <template name="home">
-    <div class="container"><h2>all of the lights</h2> </div>
+    <div class="container">
+        <h2>Welcome to StudyFlix!</h2>
+        <h4>StudyFlix was designed to help people learn new skills.</h4>
+
+        <h4>It enables real time and asynchronous questions and answers around YouTube videos.</h4>
+
+        <h4>To get started, enter a video ID on the left.</h4>
+    </div>
 </template>
 
 <template name="video">
@@ -41,7 +48,7 @@
         <div id="fbase">
 
             <h1>
-            <span>Please ask/answer questions below:</span>
+            <span>Have questions? Get answers below:</span>
             </h1>
             <label>
                 <span>Your Name :</span>
