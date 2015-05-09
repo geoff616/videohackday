@@ -12,12 +12,17 @@ Players = new Mongo.Collection("videos");
 Router.route('/', function () {
   this.render('home');
 });
-// complex route with
-// name 'postDetail' that for example
-// matches '/posts/1' or '/posts/hello-world' and automatically renders
-// template 'postDetail'
-Router.route('/video/:_id', function () {
-  this.render('video');
+
+
+//Videos!
+Router.map(function() {
+  this.route('video', {
+    path: '/video',
+    data: function () { callTheYouTube()
+
+
+    }
+  });
 });
 
 //Testing adding data to route
@@ -33,8 +38,42 @@ Router.map(function(){
 });
 
 if (Meteor.isClient) {
+  function callTheYouTube(){
+    // YouTube API will call onYouTubeIframeAPIReady() when API ready.
+    // Make sure it's a global variable.
+    onYouTubeIframeAPIReady = function () {
 
-}
+      // New Video Player, the first argument is the id of the div.
+      // Make sure it's a global variable.
+      player = new YT.Player("player", {
+
+        height: "400",
+        width: "600",
+
+        // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
+        videoId: "LdH1hSWGFGU",
+
+        // Events like ready, state change,
+        events: {
+
+          onReady: function (event) {
+
+            // Play video when player ready.
+            event.target.playVideo();
+          }
+
+        }
+
+      });
+
+    };
+
+    YT.load();
+
+  }
+};
+
+
 
 if (Meteor.isServer) {
 
