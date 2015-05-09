@@ -4,6 +4,7 @@
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
 
 
 
@@ -14,13 +15,15 @@
 
   <div id="sidebar" class="interface">
     <div class="outer">
-        <div class="logo"><img src="https://files.slack.com/files-pri/T04PQ109S-F04PSJHU2/logo.png" alt="studyflix" width="190"></div>
+        <div class="logo"><a href="http://videohackday.meteor.com/"><img src="https://files.slack.com/files-pri/T04PQ109S-F04PSJHU2/logo.png" alt="studyflix" width="190"></a></div>
       <h1 class="title">Start learning:</h1>
         <form action="video">
-            YouTube Video ID:
+            Enter a YouTube Video ID:
             <input type="text" name="video_id" value="8aGhZQkoFbQ"><br>
-         <input type="submit" value="Submit">
+            <input type="submit" value="Submit">
         </form>
+        <br>
+        <div><h2>Invite a friend to watch with you: </h2><g:hangout render="createhangout"></g:hangout></div>
     </div>
   </div>
 
@@ -48,6 +51,7 @@
 <template name="video">
     <div class="container">
         <div id="player"></div>
+
         <div id="fbase">
 
             <h1>
@@ -69,7 +73,16 @@
                     if (e.keyCode == 13) {
                         var name = $('#nameInput').val();
                         var text = $('#messageInput').val();
-                        window.myDataRef.push({name: name, text: text, time: Date()});
+                        var date = new Date(Date.now());
+                        var options = {
+                            weekday: "long", year: "numeric", month: "short",
+                            day: "numeric", hour: "2-digit", minute: "2-digit"
+                        };
+
+
+                        time = date.toLocaleTimeString("en-us", options);
+
+                        window.myDataRef.push({name: name, text: text, time: time});
                         $('#messageInput').val('');
                     }
                 });

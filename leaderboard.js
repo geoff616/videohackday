@@ -28,7 +28,7 @@ Router.map(function() {
         displayChatMessage(message.time, message.name, message.text);
       });
       function displayChatMessage(time, name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(time + ' - ' +name+': ')).appendTo($('#messagesDiv'));
+        $('<div/>').text(text).prepend($('<em/>').text(time + ' -- ' +name+' -- ')).appendTo($('#messagesDiv'));
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
 
