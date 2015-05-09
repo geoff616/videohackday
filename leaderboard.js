@@ -25,10 +25,10 @@ Router.map(function() {
       window.myDataRef = new Firebase('https://torrid-fire-9103.firebaseio-demo.com/' + this.params.query.video_id);
       window.myDataRef.on('child_added', function(snapshot) {
         var message = snapshot.val();
-        displayChatMessage(message.name, message.text);
+        displayChatMessage(message.time, message.name, message.text);
       });
-      function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+      function displayChatMessage(time, name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(time + ' - ' +name+': ')).appendTo($('#messagesDiv'));
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
 
