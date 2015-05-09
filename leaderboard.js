@@ -1,8 +1,5 @@
-// Set up a collection to contain player information. On the server,
-// it is backed by a MongoDB collection named "videos".
-
-Players = new Mongo.Collection("videos");
-
+//Track users online status
+urls = new Mongo.Collection("urls");
 
 
 //Make the routes
@@ -35,57 +32,60 @@ Router.map(function() {
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
       };
 
-      //testing ziggeo submits
-
-      window.submittedVideos = new Firebase('https://torrid-fire-9103.firebaseio-demo.com/' + this.params.query.video_id) + '/submittedvideos';
-      ZiggeoApi.Events.on("submitted", function (data) {
-        window.submittedVideos.push({id: data.video.token});
-      });
+      //Track online status
 
 
     }
   });
 });
 
+
+
+
+
 if (Meteor.isClient) {
-  function callTheYouTube(videoID){
-    // YouTube API will call onYouTubeIframeAPIReady() when API ready.
-    // Make sure it's a global variable.
-    onYouTubeIframeAPIReady = function () {
 
-      // New Video Player, the first argument is the id of the div.
+    function callTheYouTube(videoID) {
+      // YouTube API will call onYouTubeIframeAPIReady() when API ready.
       // Make sure it's a global variable.
-      player = new YT.Player("player", {
+      onYouTubeIframeAPIReady = function () {
 
-        height: "400",
-        width: "600",
+        // New Video Player, the first argument is the id of the div.
+        // Make sure it's a global variable.
+        player = new YT.Player("player", {
+
+          height: "400",
+          width: "600",
 
 
-        videoId: videoID,
+          videoId: videoID,
 
-        // Events like ready, state change,
-        events: {
+          // Events like ready, state change,
+          events: {
 
-          onReady: function (event) {
+            onReady: function (event) {
 
-            // Play video when player ready.
-            event.target.playVideo();
+              // Play video when player ready.
+              event.target.playVideo();
+            }
+
           }
 
-        }
+        });
 
-      });
+      };
 
-    };
-
+    }
     YT.load();
 
-  }
-};
 
+
+}
 
 
 if (Meteor.isServer) {
+
+
 
 
 
