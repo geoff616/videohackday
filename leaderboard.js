@@ -30,8 +30,7 @@ Router.map(function() {
       function displayChatMessage(time, name, text) {
         $('<div/>').text(text).prepend($('<em/>').text(time + ' -- ' +name+' -- ')).appendTo($('#messagesDiv'));
         $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
-
+      }
       //Track online status
 
 
@@ -50,7 +49,7 @@ if (Meteor.isClient) {
       // Make sure it's a global variable.
       onYouTubeIframeAPIReady = function () {
 
-        // New Video Player, the first argument is the id of the div.
+        // New Video Player, the first argument is the urlsid of the div.
         // Make sure it's a global variable.
         player = new YT.Player("player", {
 
